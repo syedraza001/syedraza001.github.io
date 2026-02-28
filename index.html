@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Syed Hashim Raza | AI & Software Engineering Portfolio</title>
+    <style>
+        :root {
+            --color-white: rgba(255, 255, 255, 1);
+            --color-black: rgba(0, 0, 0, 1);
+            --color-cream-50: rgba(252, 252, 249, 1);
+            --color-gray-200: rgba(245, 245, 245, 1);
+            --color-gray-300: rgba(167, 169, 169, 1);
+            --color-gray-400: rgba(119, 124, 124, 1);
+            --color-slate-500: rgba(98, 108, 113, 1);
+            --color-charcoal-700: rgba(31, 33, 33, 1);
+            --color-charcoal-800: rgba(38, 40, 40, 1);
+            --color-slate-900: rgba(19, 52, 59, 1);
+            --color-teal-300: rgba(50, 184, 198, 1);
+            --color-teal-400: rgba(45, 166, 178, 1);
+            --color-teal-500: rgba(33, 128, 141, 1);
+            --color-teal-600: rgba(29, 116, 128, 1);
+
+            --color-background: var(--color-charcoal-700);
+            --color-surface: var(--color-charcoal-800);
+            --color-text: var(--color-gray-200);
+            --color-text-secondary: rgba(167, 169, 169, 0.7);
+            --color-primary: var(--color-teal-300);
+            --color-primary-hover: var(--color-teal-400);
+
+            --font-family-base: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            --space-8: 8px;
+            --space-12: 12px;
+            --space-16: 16px;
+            --space-24: 24px;
+            --space-32: 32px;
+            --space-48: 48px;
+            --space-64: 64px;
+            --radius-base: 8px;
+            --radius-lg: 12px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--color-background);
+            color: var(--color-text);
+            font-family: var(--font-family-base);
+            line-height: 1.6;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(31, 33, 33, 0.98);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(50, 184, 198, 0.2);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            list-style: none;
+            padding: 0;
+            max-width: 1200px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+            gap: var(--space-8);
+        }
+
+        nav a {
+            color: var(--color-text);
+            text-decoration: none;
+            padding: var(--space-16) var(--space-24);
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 0.95rem;
+            border-radius: var(--radius-base);
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background: var(--color-primary);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--color-primary);
+            background: rgba(50, 184, 198, 0.1);
+        }
+
+        nav a:hover::after {
+            width: 60%;
+        }
+
+        header {
+            padding: calc(var(--space-64) + 60px) var(--space-24) var(--space-64);
+            text-align: center;
+            max-width: 1000px;
+            margin: 0 auto;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            margin-bottom: var(--space-16);
+            color: var(--color-primary);
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .subtitle {
+            font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+            color: var(--color-text-secondary);
+            margin-bottom: var(--space-32);
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        .hero-description {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            max-width: 700px;
+            margin: 0 auto var(--space-48);
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: var(--space-16);
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease-out 0.6s both;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            padding: var(--space-12) var(--space-32);
+            border-radius: var(--radius-base);
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: var(--color-primary);
+            color: var(--color-slate-900);
+        }
+
+        .btn-primary:hover {
+            background: var(--color-primary-hover);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--color-primary);
+            color: var(--color-primary);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(50, 184, 198, 0.1);
+            transform: translateY(-2px);
+        }
+
+        section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--space-64) var(--space-24);
+        }
+
+        section h2 {
+            font-size: clamp(2rem, 4vw, 2.5rem);
+            margin-bottom: var(--space-48);
+            text-align: center;
+            color: var(--color-primary);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-24);
+        }
+
+        .card {
+            background: var(--color-surface);
+            padding: var(--space-32);
+            border-radius: var(--radius-lg);
+            border: 1px solid rgba(119, 124, 124, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--color-primary);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .card h3 {
+            color: var(--color-primary);
+            margin-bottom: var(--space-12);
+            font-size: 1.5rem;
+        }
+
+        .card p {
+            color: var(--color-text-secondary);
+            margin-bottom: var(--space-16);
+        }
+
+        .tag {
+            display: inline-block;
+            background: rgba(50, 184, 198, 0.1);
+            color: var(--color-primary);
+            padding: 0.3rem 0.8rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            margin: 0.25rem 0.25rem 0 0;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-24);
+            margin-top: var(--space-32);
+        }
+
+        .skill-category h3 {
+            color: var(--color-primary);
+            margin-bottom: var(--space-16);
+            font-size: 1.3rem;
+        }
+
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-8);
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: var(--space-48);
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--color-primary);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: var(--space-48);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -54px;
+            top: 0;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--color-primary);
+            border: 3px solid var(--color-background);
+        }
+
+        .timeline-item h3 {
+            color: var(--color-primary);
+            margin-bottom: var(--space-8);
+        }
+
+        .timeline-item .date {
+            color: var(--color-text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: var(--space-8);
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-32);
+            flex-wrap: wrap;
+            margin-top: var(--space-32);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-8);
+            color: var(--color-text);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item:hover {
+            color: var(--color-primary);
+        }
+
+        footer {
+            text-align: center;
+            padding: var(--space-48) var(--space-24);
+            background: var(--color-surface);
+            color: var(--color-text-secondary);
+            margin-top: var(--space-64);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--color-text);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: var(--space-12);
+            position: absolute;
+            right: var(--space-24);
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: var(--space-8) 0;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: stretch;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+                gap: 0;
+            }
+
+            nav ul.active {
+                max-height: 400px;
+            }
+
+            nav a {
+                padding: var(--space-16);
+                border-bottom: 1px solid rgba(119, 124, 124, 0.2);
+            }
+
+            nav a::after {
+                display: none;
+            }
+
+            .timeline {
+                padding-left: var(--space-32);
+            }
+
+            .timeline-item::before {
+                left: -38px;
+            }
+        }
+
+        .project-link {
+            color: var(--color-primary);
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            margin-top: var(--space-8);
+        }
+
+        .project-link:hover {
+            text-decoration: underline;
+        }
+
+        #about {
+            background: var(--color-surface);
+            padding: var(--space-64) var(--space-24);
+            margin: 0;
+            max-width: 100%;
+        }
+
+        #about .content-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-content p {
+            font-size: 1.1rem;
+            margin-bottom: var(--space-24);
+            color: var(--color-text);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-32);
+            margin-top: var(--space-48);
+        }
+
+        .stat-card {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--color-primary);
+            display: block;
+        }
+
+        .stat-label {
+            color: var(--color-text-secondary);
+            font-size: 1rem;
+            margin-top: var(--space-8);
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <button class="mobile-menu-toggle" onclick="toggleMenu()" aria-label="Toggle menu">☰</button>
+    <ul id="navMenu">
+        <li><a href="#home" onclick="closeMenu()">Home</a></li>
+        <li><a href="#about" onclick="closeMenu()">About</a></li>
+        <li><a href="#education" onclick="closeMenu()">Education</a></li>
+        <li><a href="#projects" onclick="closeMenu()">Projects</a></li>
+        <li><a href="#skills" onclick="closeMenu()">Skills</a></li>
+        <li><a href="#experience" onclick="closeMenu()">Experience</a></li>
+        <li><a href="#certifications" onclick="closeMenu()">Certifications</a></li>
+        <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
+    </ul>
+</nav>
+
+<header id="home">
+    <h1>Syed Hashim Raza</h1>
+    <p class="subtitle">AI for Business MSc | Software Engineer | Cyber Security Specialist</p>
+    <p class="hero-description">
+        A Software Engineering graduate and current AI for Business specialist with UK ENIC-verified degree comparability (RQF Level 6). 
+        Combining deep technical roots in software architecture with a modern focus on the strategic application of Artificial Intelligence. 
+        OCS Star Award recipient with proven expertise in system administration and cyber security.
+    </p>
+    <div class="cta-buttons">
+        <a href="#projects" class="btn btn-primary">View Projects</a>
+        <a href="https://www.linkedin.com/in/syedraza001/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">Connect on LinkedIn</a>
+    </div>
+</header>
+
+<section id="about">
+    <div class="content-wrapper">
+        <h2>About Me</h2>
+        <div class="about-content">
+            <p>
+                I'm a Manchester-based professional with a unique blend of software engineering, cybersecurity, and AI business strategy expertise. 
+                Currently pursuing an MSc in Artificial Intelligence for Business at the University of Law, I'm focused on understanding how AI 
+                technologies can transform business operations and digital economies.
+            </p>
+            <p>
+                My background includes practical UK experience as a Cluster Relief Security Officer at OCS, where I was awarded the OCS Star Award 
+                for exceptional vigilance and quick response during a high-priority security incident. I've successfully liaised with law enforcement 
+                and emergency services, providing detailed incident reports and high-quality CCTV evidence for investigations.
+            </p>
+            <p>
+                My dissertation research explores the future of freelancing in Pakistan, analyzing AI's impact on the gig economy and digital workforce—a 
+                topic that combines my technical knowledge with real-world economic implications.
+            </p>
+        </div>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <span class="stat-number">3</span>
+                <span class="stat-label">Advanced Degrees</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">3+</span>
+                <span class="stat-label">Years UK Experience</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">5</span>
+                <span class="stat-label">Years IT Experience</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">5</span>
+                <span class="stat-label">Certifications</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="education">
+    <h2>Education</h2>
+    <div class="timeline">
+        <div class="timeline-item">
+            <h3>MSc Artificial Intelligence for Business</h3>
+            <p class="date">University of Law, Manchester | Feb 2026 - Feb 2028</p>
+            <p>
+                Focusing on the intersection of AI technologies and business strategy. Dissertation topic: 
+                <strong>The Future of Freelancing in Pakistan</strong> – analyzing AI's impact on the gig economy and digital workforce transformation.
+            </p>
+            <div>
+                <span class="tag">Machine Learning</span>
+                <span class="tag">Business Strategy</span>
+                <span class="tag">AI Implementation</span>
+                <span class="tag">Digital Economics</span>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <h3>MSc Cyber Security Management</h3>
+            <p class="date">University of Law, Manchester | Sept 2022 - Sept 2023</p>
+            <p>
+                Awarded UK RQF Level 7 (master's degree). Advanced study in data security, cyber security for business, 
+                and cloud computing. Developed expertise in implementing security protocols and managing organizational security posture.
+            </p>
+            <div>
+                <span class="tag">Security Audits</span>
+                <span class="tag">Risk Management</span>
+                <span class="tag">Compliance</span>
+                <span class="tag">GDPR</span>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <h3>BS Software Engineering</h3>
+            <p class="date">University of Gujrat, Pakistan | Sept 2017 - Sept 2021</p>
+            <p>
+                UK ENIC Verified: Equivalent to UK Bachelor (Honours) degree (RQF Level 6). Foundation in full-stack development, 
+                software architecture, and engineering principles. Built skills in designing scalable, maintainable systems and modern web technologies.
+            </p>
+            <div>
+                <span class="tag">Full-Stack Development</span>
+                <span class="tag">System Design</span>
+                <span class="tag">Agile Methods</span>
+                <span class="tag">OOP</span>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <h3>HSSC (Intermediate)</h3>
+            <p class="date">BISE Gujranwala, Pakistan | Sept 2015 - Sept 2017</p>
+            <p>
+                UK ENIC Verified: Equivalent to UK GCSE Mathematics (Grade C/4 or above).
+            </p>
+        </div>
+    </div>
+</section>
+
+<section id="experience">
+    <h2>Professional Experience</h2>
+    <div class="timeline">
+        <div class="timeline-item">
+            <h3>Cluster Relief Security Officer</h3>
+            <p class="date">OCS Company | Dec 2023 - Present</p>
+            <p>
+                <strong>🏆 Awarded the OCS Star Award</strong> for exceptional vigilance and quick response during a high-priority security incident.
+            </p>
+            <ul style="color: var(--color-text-secondary); margin-left: 1.5rem; margin-top: 0.5rem;">
+                <li>Liaised effectively with law enforcement and emergency services, providing detailed incident reports and high-quality CCTV evidence for investigations</li>
+                <li>Maintained security protocols across multiple Court & Tribunal locations</li>
+                <li>Demonstrated strong security and compliance awareness in high-pressure environments</li>
+            </ul>
+        </div>
+        <div class="timeline-item">
+            <h3>Warehouse Operator</h3>
+            <p class="date">Whistl | Jan 2023 - May 2024</p>
+            <ul style="color: var(--color-text-secondary); margin-left: 1.5rem; margin-top: 0.5rem;">
+                <li>Managed inventory data accuracy and utilized warehouse management software to coordinate shipments</li>
+                <li>Demonstrated strong time management and reliability within a fast-paced environment</li>
+            </ul>
+        </div>
+        <div class="timeline-item">
+            <h3>IT Support Specialist</h3>
+            <p class="date">Nexsys Solutions | Aug 2017 - Aug 2022</p>
+            <ul style="color: var(--color-text-secondary); margin-left: 1.5rem; margin-top: 0.5rem;">
+                <li><strong>Optimized system performance</strong> for over 50 internal users by implementing proactive hardware maintenance and software updates, reducing technical downtime by 15%</li>
+                <li><strong>Successfully migrated company data</strong> to a secure cloud environment, ensuring 100% data integrity and improved remote accessibility</li>
+                <li>Provided technical support, troubleshooting, and system administration</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section id="projects">
+    <h2>Core Projects</h2>
+    <div class="grid">
+        <div class="card">
+            <h3>Strategic AI Integration for Business</h3>
+            <p>
+                <strong>Current Project | University of Law</strong><br>
+                Developing a business case for the ethical implementation of Generative AI tools to automate administrative workflows. 
+                Exploring AI ethics, machine learning applications, and data-driven business strategy.
+            </p>
+            <div>
+                <span class="tag">Generative AI</span>
+                <span class="tag">Business Strategy</span>
+                <span class="tag">AI Ethics</span>
+                <span class="tag">Workflow Automation</span>
+            </div>
+        </div>
+        <div class="card">
+            <h3>Full-Stack Web Development System</h3>
+            <p>
+                <strong>University of Gujrat</strong><br>
+                Developed a database-driven web application utilizing Object-Oriented Programming (OOP) principles and SQL. 
+                Implemented secure user authentication and network protocols to ensure data integrity.
+            </p>
+            <div>
+                <span class="tag">OOP</span>
+                <span class="tag">SQL</span>
+                <span class="tag">Authentication</span>
+                <span class="tag">Network Protocols</span>
+            </div>
+        </div>
+        <div class="card">
+            <h3>MSc Dissertation: The Future of Freelancing in Pakistan</h3>
+            <p>
+                <strong>University of Law</strong><br>
+                Conducted extensive research into the digital economy, focusing on the growth of remote technical services 
+                and global outsourcing platforms. Analyzing AI's impact on the gig economy and digital workforce transformation.
+            </p>
+            <div>
+                <span class="tag">Research</span>
+                <span class="tag">Digital Economy</span>
+                <span class="tag">AI Impact Analysis</span>
+                <span class="tag">Gig Economy</span>
+            </div>
+        </div>
+        <div class="card">
+            <h3>AI-Driven Gig Economy Research</h3>
+            <p>
+                Recent dissertation project analyzing the future of freelancing in Pakistan. Examining how AI tools and platforms 
+                are transforming digital work, remote collaboration, and economic opportunities in emerging markets.
+            </p>
+            <div>
+                <span class="tag">AI Research</span>
+                <span class="tag">Data Analysis</span>
+                <span class="tag">Economic Impact</span>
+                <span class="tag">Digital Transformation</span>
+            </div>
+        </div>
+        <div class="card">
+            <h3>Multilingual AI Communication Tools</h3>
+            <p>
+                Building tools that bridge language barriers in professional settings. Utilizing natural language processing 
+                to enable seamless communication across Urdu, Hindi, and English-speaking teams.
+            </p>
+            <div>
+                <span class="tag">NLP</span>
+                <span class="tag">Multilingual</span>
+                <span class="tag">API Integration</span>
+                <span class="tag">Python</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="skills">
+    <h2>Technical Skills</h2>
+    <div class="skills-grid">
+        <div class="skill-category">
+            <h3>AI & Machine Learning</h3>
+            <div class="skill-list">
+                <span class="tag">Python</span>
+                <span class="tag">TensorFlow</span>
+                <span class="tag">Natural Language Processing</span>
+                <span class="tag">Data Analysis</span>
+                <span class="tag">AI Strategy</span>
+            </div>
+        </div>
+        <div class="skill-category">
+            <h3>Software Engineering</h3>
+            <div class="skill-list">
+                <span class="tag">JavaScript</span>
+                <span class="tag">Node.js</span>
+                <span class="tag">Full-Stack Development</span>
+                <span class="tag">System Architecture</span>
+                <span class="tag">API Design</span>
+                <span class="tag">Git</span>
+                <span class="tag">SQL</span>
+                <span class="tag">OOP</span>
+            </div>
+        </div>
+        <div class="skill-category">
+            <h3>IT Support & Administration</h3>
+            <div class="skill-list">
+                <span class="tag">IT Support & Troubleshooting</span>
+                <span class="tag">System Administration</span>
+                <span class="tag">Network Management</span>
+                <span class="tag">Cloud Migration</span>
+                <span class="tag">Windows OS</span>
+                <span class="tag">Microsoft Office</span>
+            </div>
+        </div>
+        <div class="skill-category">
+            <h3>Cybersecurity</h3>
+            <div class="skill-list">
+                <span class="tag">Security Audits</span>
+                <span class="tag">Risk Management</span>
+                <span class="tag">Compliance</span>
+                <span class="tag">GDPR</span>
+                <span class="tag">Phishing Awareness</span>
+                <span class="tag">Information Security</span>
+            </div>
+        </div>
+        <div class="skill-category">
+            <h3>Languages</h3>
+            <div class="skill-list">
+                <span class="tag">English (Fluent)</span>
+                <span class="tag">Urdu (Native)</span>
+                <span class="tag">Punjabi (Fluent)</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="certifications">
+    <h2>Certifications & Achievements</h2>
+    <div class="grid">
+        <div class="card">
+            <h3>🏆 Star Award Recipient</h3>
+            <p class="date">OCS | January 2025</p>
+            <p>Recognized for exceptional vigilance and quick response during a high-priority security incident.</p>
+        </div>
+        <div class="card">
+            <h3>🔒 Information Security Certification</h3>
+            <p class="date">OCS | March 2025</p>
+            <p>Comprehensive training in information security protocols and best practices.</p>
+        </div>
+        <div class="card">
+            <h3>🛡️ Cyber Security & Phishing Awareness</h3>
+            <p class="date">OCS | March 2025</p>
+            <p>Certified in cyber security fundamentals and phishing attack prevention.</p>
+        </div>
+        <div class="card">
+            <h3>💻 IT Support Specialist Certification</h3>
+            <p class="date">Coursera | November 2023</p>
+            <p>Professional certification in IT support, troubleshooting, and system administration.</p>
+        </div>
+        <div class="card">
+            <h3>📊 Microsoft Office Specialist</h3>
+            <p class="date">Microsoft | December 2018</p>
+            <p>Certified proficiency in Microsoft Office Suite applications.</p>
+        </div>
+    </div>
+</section>
+
+<section id="contact">
+    <h2>Get in Touch</h2>
+    <div class="contact-info">
+        <a href="mailto:syedhashimrazagee@gmail.com" class="contact-item">
+            <span>📧</span>
+            <span>syedhashimrazagee@gmail.com</span>
+        </a>
+        <a href="tel:07778537120" class="contact-item">
+            <span>📱</span>
+            <span>07778 537120</span>
+        </a>
+        <span class="contact-item">
+            <span>📍</span>
+            <span>Manchester, UK</span>
+        </span>
+        <a href="https://www.linkedin.com/in/syedraza001/" target="_blank" rel="noopener noreferrer" class="contact-item">
+            <span>💼</span>
+            <span>LinkedIn Profile</span>
+        </a>
+    </div>
+    <div style="text-align: center; margin-top: var(--space-48);">
+        <p style="color: var(--color-text-secondary); margin-bottom: var(--space-24);">
+            Open to collaboration on AI projects, software development, and security consulting opportunities.
+        </p>
+        <a href="mailto:syedhashimrazagee@gmail.com" class="btn btn-primary">Send Message</a>
+    </div>
+</section>
+
+<footer>
+    <p>&copy; 2026 Syed Hashim Raza. All rights reserved.</p>
+    <p style="margin-top: var(--space-8);">Built with passion for AI, security, and innovation.</p>
+</footer>
+
+<script>
+function toggleMenu() {
+    const menu = document.getElementById('navMenu');
+    menu.classList.toggle('active');
+}
+
+function closeMenu() {
+    const menu = document.getElementById('navMenu');
+    menu.classList.remove('active');
+}
+
+document.querySelectorAll('nav a').forEach(link => {
+    link.addEventListener('click', function() {
+        document.querySelectorAll('nav a').forEach(a => a.style.background = 'none');
+        this.style.background = 'rgba(50, 184, 198, 0.15)';
+    });
+});
+</script>
+
+</body>
+</html>
